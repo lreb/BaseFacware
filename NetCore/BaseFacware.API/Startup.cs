@@ -1,3 +1,4 @@
+using BaseFacware.API.Services.PDFTemplateProcess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace BaseFacware.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseFacware.API", Version = "v1" });
             });
+
+            services.AddTransient<IPdfDemoProcess, PdfDemoProcess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
