@@ -34,7 +34,16 @@ namespace BaseFacware.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseFacware.API", Version = "v1" });
             });
 
+            #region Dependency Injection Life Time Cycle
+
+            // each time the service is requested, a new instance is created in each implementation (multi threading)
             services.AddTransient<IPdfDemoProcess, PdfDemoProcess>();
+            // just creates the instance the first request, the reuse the same instance in all requests (share data, generic functionality, real use)
+            //services.AddSingleton<IPdfDemoProcess, PdfDemoProcess>();
+            // create a new instance in the begin of the request and use it through the request, cerate a new one each request (maintain state within a request.)
+            //services.AddScoped<IPdfDemoProcess, PdfDemoProcess>();
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
